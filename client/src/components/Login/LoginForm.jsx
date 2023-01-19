@@ -2,9 +2,11 @@ import React ,{useState}from 'react'
 import { Box, Flex, FormControl, Text, FormHelperText, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
+import { motion } from 'framer-motion'
 
 
 export default function LoginForm() {
+    
     const initialState = { email: "", password: "" }
     const [input, setInput] = useState(initialState)
 
@@ -14,7 +16,7 @@ export default function LoginForm() {
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(!show)
     return (
-        <FormControl display="flex" flexDirection="column" gap={5} mt="10%" m="auto">
+        <FormControl display="flex" flexDirection="column" gap={5} mt="10%" m="auto"  >
             <Box width="60%" m="auto" cursor="pointer" ><img src={logo} alt="logo" /></Box>
             <Box>
                 <FormLabel>Email</FormLabel>
@@ -39,9 +41,13 @@ export default function LoginForm() {
                     </InputRightElement>
                 </InputGroup>
             </Box>
-            <Button className='signup-part' color="#fff" variant="outline" _hover={{
-                color: "teal.500",
-                border: "2px solid teal"
+            <Button className='signup-part' as={motion.div}
+                        whileHover={{
+                            scale: 1.1,
+                        }} variant="outline" _hover={{
+                // color: "teal.500",
+                cursor: "pointer"
+                // border: "2px solid teal"
             }} w="100%" onClick={() => console.log(input)}>LogIn</Button>
         </FormControl>
     )

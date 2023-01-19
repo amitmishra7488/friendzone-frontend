@@ -2,9 +2,13 @@ import React ,{useState}from 'react'
 import { Box, Flex, FormControl, Text, FormHelperText, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
-
+import {chakra, shouldForwardProp } from '@chakra-ui/react';
+import { motion, isValidMotionProp } from 'framer-motion';
 
 export default function Signupform() {
+    // const FormControl = chakra(motion.div, {
+    //     shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+    //   });
     const initialState = { email: "", password: "",username: ""}
     const [input, setInput] = useState(initialState)
 
@@ -14,7 +18,7 @@ export default function Signupform() {
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(!show)
     return (
-        <FormControl display="flex" flexDirection="column" gap={2} mt="10%" m="auto">
+        <FormControl display="flex" flexDirection="column" gap={2} mt="10%" m="auto" >
             <Box width="60%" m="auto" cursor="pointer" ><img src={logo} alt="logo" /></Box>
             <Box>
                 <FormLabel>UserName</FormLabel>
@@ -61,9 +65,13 @@ export default function Signupform() {
                     </InputRightElement>
                 </InputGroup>
             </Box>
-            <Button className='signup-part' color="#fff" variant="outline" _hover={{
-                color: "teal.500",
-                border: "2px solid teal"
+            <Button className='signup-part' as={motion.div}
+                        whileHover={{
+                            scale: 1.1,
+                        }} color="#fff" variant="outline" _hover={{
+                // color: "teal.500",
+                cursor: "pointer"
+                // border: "2px solid teal"
             }} w="100%" onClick={() => console.log(input)}>SignUp</Button>
         </FormControl>
     )
