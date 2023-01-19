@@ -1,16 +1,23 @@
-import { Box, Button, Text,Flex } from '@chakra-ui/react'
+import { Box, Button, Text,Flex,chakra, shouldForwardProp } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { store } from '../Redux/Store';
 import { toggleLogin } from '../Redux/Actions/userAction';
 import { useDispatch } from 'react-redux';
+import {motion, isValidMotionProp} from "framer-motion"
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
+// const controls = useDragControls()
+
 export default function SignupPart() {
     const [toggle, setToggle] = useState(false);
-    // const dispatch = useDispatch();
-    // var storeData= store.getState();
-    // console.log(storeData)
+    const ChakraBox = chakra(motion.div, {
+        shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
+      });
+   
+    
+    
+    
 
 
 
@@ -18,7 +25,7 @@ export default function SignupPart() {
     return (
         <>
             {toggle ?
-                <Box className='formContainer'>
+                <ChakraBox className='formContainer'  animate={{y:0}} initial={{y:-350}} transition='0.5s' >
                     <Box className="form"bg="#fff" w="55%" p={30}>
                         <LoginForm />
                     </Box>
@@ -32,17 +39,23 @@ export default function SignupPart() {
                             fontWeight="medium"
                         >Don't have an Account ?</Text>
                         <Button borderRadius="20px" variant="outline"
+                        as={motion.div}
+                        whileHover={{
+                            scale: 1.1,
+                        }}
                             _hover={{
                                 background: "transparent",
                                 color: "teal.500",
-                                border: "1px solid teal"
+                                border: "1px solid teal",
+                                cursor: "pointer"
                             }}
                             onClick={() => { setToggle(false) }}
                         >SignUp</Button>
                     </Box>
-                </Box>
+                </ChakraBox>
                 :
-                <Box className='formContainer'>
+                // have to fix here some animations
+                <Box className='formContainer' as={motion.div} animate={{y:0}} initial={{y:-350}} transition='0.5s'>
                     <Box className="form" bg="#fff" w="55%" p={30}>
                         <SignupForm />
                     </Box>
@@ -56,10 +69,15 @@ export default function SignupPart() {
                             fontWeight="medium"
                         >You have an Account ?</Text>
                         <Button borderRadius="20px" variant="outline"
+                            as={motion.div}
+                            whileHover={{
+                                scale: 1.1,
+                            }}
                             _hover={{
                                 background: "transparent",
                                 color: "teal.500",
-                                border: "1px solid teal"
+                                border: "1px solid teal",
+                                cursor: "pointer"
                             }}
                             onClick={() => { setToggle(true) }}
                         >LogIn</Button>

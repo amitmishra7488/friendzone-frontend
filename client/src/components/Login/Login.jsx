@@ -3,6 +3,8 @@ import { Box, Flex, FormControl, Text, FormHelperText, FormLabel, Input, Button,
 import "./LoginStyle.css"
 import ParticlesBg from 'particles-bg'
 import SignupPart from './SignupPart'
+import {motion, spring} from "framer-motion"
+
 export default function Login() {
     let config = {
         num: [4, 7],
@@ -41,7 +43,7 @@ export default function Login() {
     return (
         <Box pt="5%" h="100vh">
             <ParticlesBg type="lines" config={config} bg={true} />
-            <SignupPart/>
+            <SignupPart as={motion.div} animate={{y:0}} initial={{y:100}}></SignupPart>
         </Box>
     )
 }
