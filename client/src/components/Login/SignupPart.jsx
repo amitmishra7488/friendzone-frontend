@@ -25,7 +25,7 @@ export default function SignupPart() {
     return (
         <>
             {toggle ?
-                <ChakraBox className='formContainer'  animate={{y:0}} initial={{y:-350}} transition='0.5s' >
+                <ChakraBox className='formContainer'  animate={{y:0}} initial={{y:-450}} transition='1s' >
                     <Box className="form"bg="#fff" w="55%" p={30}>
                         <LoginForm />
                     </Box>
@@ -55,7 +55,7 @@ export default function SignupPart() {
                 </ChakraBox>
                 :
                 // have to fix here some animations
-                <Box className='formContainer' as={motion.div} animate={{y:0}} initial={{y:-350}} transition='0.5s'>
+                <Box className='formContainer' as={motion.div} animate={{y:0}} initial={{y:-450}} transition='1s'>
                     <Box className="form" bg="#fff" w="55%" p={30}>
                         <SignupForm />
                     </Box>
