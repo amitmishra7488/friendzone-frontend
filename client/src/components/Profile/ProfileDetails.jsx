@@ -5,7 +5,8 @@ import { Tooltip } from '@chakra-ui/tooltip';
 import { fontSize, width } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { GrUserSettings } from 'react-icons/gr'
-import { Icon } from '@chakra-ui/react'
+import { Icon, Spinner } from '@chakra-ui/react'
+
 
 
 export default function ProfileDetails() {
@@ -14,24 +15,25 @@ export default function ProfileDetails() {
         try {
             const res = await fetch('https://randomuser.me/api/')
             const data = await res.json();
-            console.log(data.results[0]);
+            // console.log(data.results[0]);
             setProfile(data.results[0]);
-            // console.log(profile)
+            
         }
         catch (error) {
-            console.lof(error);
+            console.log(error);
         }
     }
 
     useEffect(() => {
         profilePic();
+        
     }, [])
     return (
         <Box className='profileMainDiv' >
-            <Box className='profileContainer' display="flex" w="60%" m="auto" mt={50}>
+            {Object.keys(profile).length<=0?<Spinner textAlign="center" size='xl' />
+            :<Box className='profileContainer' display="flex" w="60%" m="auto" mt={50}>
                 <Box  w='30%'>
-                    <Box><Image borderRadius='full' boxSize='75%' border="2px solid #ccc"
-    objectFit='cover' src={"https://bit.ly/dan-abramov" } alt='profile' /></Box>
+                    <Box><Image borderRadius='full' boxSize='75%' border="2px solid #ccc" objectFit='cover' src={ profile.picture.large} alt='profile' /></Box>
                 </Box>
                 <Box  w='70%'>
                     <Box display="flex" flexDirection="column" >
@@ -41,7 +43,7 @@ export default function ProfileDetails() {
                             <Text>coolamitmishra</Text>
                             <Button size="sm">Edit Profile</Button>
                             <Tooltip hasArrow label='user setting' >
-                                <Icon as={GrUserSettings} boxSize={25}   />
+                                <Box><Icon as={GrUserSettings} boxSize={25}   /></Box>
                             </Tooltip>   
                         </HStack>
 
@@ -65,7 +67,7 @@ export default function ProfileDetails() {
 
                     </Box>
                 </Box>
-            </Box>
+            </Box>}
         </Box>
     )
 }
