@@ -33,8 +33,9 @@ export default function ProfileCard() {
         setMin(3*(page-1));
         setMax(page*3)
             // console.log(3*(page-1),page*3)
-        const d=arr.splice(min,max)
-        console.log(d)
+       setData(arr)
+        console.log(data)
+        // console.log(min,max)
         // setFiltered([...d])
         //  console.log(filtered);
     }, [page])
@@ -51,7 +52,7 @@ export default function ProfileCard() {
                             : data.map((el, i) => {
                                 return (
                                     <Box key={i.toString()}>
-                                        <Image boxSize='280px' objectFit='cover' src={el.picture.large} alt='Dan Abramov' />
+                                        <Image boxSize='280px'  src={el.picture.large} alt='Dan Abramov' />
                                     </Box>
                                 )
                             })
