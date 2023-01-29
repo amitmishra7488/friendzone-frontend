@@ -6,7 +6,7 @@ import "./navbar.css"
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            
+            sidebar
         </div>
     );
 };
