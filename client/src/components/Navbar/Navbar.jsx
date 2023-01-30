@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo2.png'
 import "./navbar.css"
 import {FiSend} from  "react-icons/fi"
 import {FaRegCompass,FaRegHeart} from "react-icons/fa"
