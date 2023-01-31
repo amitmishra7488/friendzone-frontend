@@ -7,11 +7,14 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Navbar/Sidebar';
 import Post from './components/Post/Post';
 import Home from './components/Homepage/Home';
+import { useEffect } from 'react';
 
 
 
 
 function App() {
+
+  
 
 
   return (

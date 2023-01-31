@@ -1,20 +1,29 @@
 import React from 'react';
-import './story.css';
+import { Box, Image } from "@chakra-ui/react"
+import "./story.css"
 
 const Story = () => (
-    
-  <div className="InstagramStory">
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
+  <Box className="story">
+    <div className="story-container" >
+      
+    <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
+        <img src="https://bit.ly/dan-abramov" alt='story' /> 
+        <img src="https://bit.ly/dan-abramov" alt='story' />
 
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
 
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
-
-    <img src="https://picsum.photos/50" alt="" className="InstagramStory__story-image"/>
-
-  </div>
+    </div>
+  </Box>
 );
 
 export default Story;

@@ -1,19 +1,15 @@
-.InstagramStory {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    margin: 0 5px;
-  }
-  
-  .InstagramStory__story-image {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-  }
-  
-  .InstagramStory__username {
-    margin-left: 8px;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
+
+.story-container {
+  display: flex;
+  gap: 2%;
+  overflow-x: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.story-container>img{
+  border-radius: 50%;
+  width: 10%;
+}
+.story-container::-webkit-scrollbar {
+  display: none;
+}
