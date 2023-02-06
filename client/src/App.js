@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Home/>
-      
+      {/* <Profile/> */}
       
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './post.css';
 import { FaRegHeart, FaRegComment } from "react-icons/fa"
 import { useState } from 'react';
+import PostLoading from '../PostLoading/PostLoading';
 
 
 const InstagramPost = () => {
@@ -29,13 +30,13 @@ const InstagramPost = () => {
       return(
     <div className="InstagramPost">
       <div className="InstagramPost__header">
-        <img src="https://picsum.photos/50" alt="" className="InstagramPost__profile-image" />
+        <img src={el.user.dp} alt="" className="InstagramPost__profile-image" />
         <p className="InstagramPost__username">{el.user.name}</p>
       </div>
       <img src={el.image} alt="" className="InstagramPost__post-image" />
       <div className="InstagramPost__actions">
         <FaRegHeart />
-        <p className="InstagramPost__likes">{' '+el.likes.length}</p>
+        <p className="InstagramPost__likes">{el.likes.length+" likes"}</p>
         <FaRegComment />
         <p className="InstagramPost__comments">45</p>
       </div>
@@ -43,7 +44,11 @@ const InstagramPost = () => {
     </div>
     )
   })
-    : <div>Loading....</div>}
+    : 
+    <div className="InstagramPost">
+      <PostLoading/>
+    </div>
+    }
 
   </>
 )};
