@@ -1,22 +1,25 @@
-import { Box, HStack } from '@chakra-ui/layout'
+import { Box, Flex } from '@chakra-ui/layout'
 import React from 'react'
 import Sidebar from '../Navbar/Sidebar'
 import Post from '../Post/Post'
+import Story from '../Story/Story'
+import Suggestions from '../Suggestion/Suggestions'
 
 export default function Home() {
     return (
-        <HStack spacing="5%">
-            <Box w="25%" float="left">
+        <Flex >
+            <Box w="25%" mr="5%">
                 <Sidebar />
             </Box>
-            <Box w="45%">
-                <Box display="flex" flexDirection="column" gap="5%" >
+            <Box w="40%" mr="2%" mt="2%">
+                <Box display="flex" flexDirection="column" >
+                    <Story/>
                     <Post />
                 </Box>
             </Box>
-            <Box>
-                {/* <ProfileSuggestion/> */}
+            <Box >
+                <Suggestions/>
             </Box>
-        </HStack>
+        </Flex>
     )
 }
