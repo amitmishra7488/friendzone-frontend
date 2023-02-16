@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Button, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Image, Text, textDecoration  } from '@chakra-ui/react'
 import PostLoading from '../PostLoading/PostLoading';
+import {SlUserFollow} from 'react-icons/sl'
+import {BiUser} from 'react-icons/bi'
+import {motion } from "framer-motion";
 
 export default function Suggestions() {
     const [data, setData] = useState([]);
@@ -44,7 +47,16 @@ export default function Suggestions() {
                     </Box>
                 </Box>
                 <Box>
-                    <Button>
+                    <Button
+                    variant="link"
+                    rightIcon={<BiUser/>}
+                    colorScheme='facebook'
+                    _hover={{
+                        color: "blue",
+                        fontWeight:"bold",
+                        textDecoration:"underline"
+                      }}
+                    >
                         Profile
                     </Button>
                 </Box>
@@ -68,7 +80,13 @@ export default function Suggestions() {
                             </Box>
                         </Box>
                         <Box>
-                            <Button>
+                            <Button variant='link' colorScheme='facebook'
+                    _hover={{
+                        // variant:"link",
+                        color: "blue",
+                        fontWeight:"bold",
+                        textDecoration:"underline"
+                      }} rightIcon={<SlUserFollow/>}>
                                 Follow
                             </Button>
                         </Box>
