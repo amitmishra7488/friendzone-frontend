@@ -1,18 +1,50 @@
 import React ,{useState}from 'react'
-import { Box, Flex, FormControl, Text, FormHelperText, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Box, FormControl, FormHelperText, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
 import { motion } from 'framer-motion'
+import axios from 'axios'
+
+import Cookies from  'universal-cookie'
 
 
 export default function LoginForm() {
-    
+    const cookies = new Cookies();
+
     const initialState = { email: "", password: "" }
     const [input, setInput] = useState(initialState)
 
     const handleInputChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
+
+    const display= async(email,password)=>{
+        try{
+            const res = await axios.post('http://localhost:8080/user/login',{
+                email: email,
+                password: password
+            })
+            console.log(res.data)
+            cookies.set('token',res.data.token,{
+                path:'/',
+                maxAge:24*60*60
+            })
+            
+            setTimeout(()=>{
+                console.log(cookies.get('token'))
+            },1000);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const handleSubmit = () =>{
+        const { email, password} = input;
+        display(email, password);
+    }
+
+
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(!show)
     return (
@@ -48,7 +80,7 @@ export default function LoginForm() {
                 // color: "teal.500",
                 cursor: "pointer"
                 // border: "2px solid teal"
-            }} w="100%" onClick={() => console.log(input)}>LogIn</Button>
+            }} w="100%" onClick={handleSubmit}>LogIn</Button>
         </FormControl>
     )
 }

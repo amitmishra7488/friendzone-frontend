@@ -3,7 +3,7 @@ import { Box,  FormControl, FormLabel, Input, Button, InputGroup, InputRightElem
 import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import axios from 'axios'
 
 export default function Signupform() {
     const initialState = { email: "", password: "",confirmPassword:"",username: ""}
