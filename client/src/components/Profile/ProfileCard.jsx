@@ -1,16 +1,25 @@
 import { Box, Divider, Image, Spacer, Spinner, Grid, Button } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react'
+import Cookies from 'universal-cookie'
+import axios from 'axios';
+
 
 export default function ProfileCard() {
+    const cookies = new Cookies();
+
     const [profile, setProfile] = useState({});
     const [data, setData] = useState([]);
 
     const profilePic = async () => {
         try {
-            const res = await fetch('http://localhost:8080/post/userid/63ee6f8401cac90303a5145a')
-            const data = await res.json();
-            console.log(data);
-            setData(data);
+            const res = await axios.get('http://localhost:8080/post/profilePost', {
+                headers: {
+                    authorization: cookies.get('token')
+                }
+            })
+            console.log(cookies.get('token'));
+            console.log(res.data);
+            setData(res.data);
 
         }
         catch (error) {
@@ -37,7 +46,7 @@ export default function ProfileCard() {
     return (
         <Box>
 
-            <Box w="80%" m="auto">
+            <Box w="80%" m="auto" mb="3%">
                 <Divider border="1px solid #ccc" mb="2%" />
                 <Box >
                     <Grid display="grid" templateColumns='repeat(3, 1fr)' gap={6} >
@@ -52,11 +61,11 @@ export default function ProfileCard() {
                         }
                     </Grid>
 
-                    <Box display='flex' justifyContent="center" alignItems="center" >
+                    {/* <Box display='flex' justifyContent="center" alignItems="center" >
                         <Button>{"<"}</Button>
                         <Box>1</Box>
                         <Button>{">"}</Button>
-                    </Box>
+                    </Box> */}
                 </Box>
             </Box>
 

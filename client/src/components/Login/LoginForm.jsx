@@ -4,11 +4,13 @@ import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
 import { motion } from 'framer-motion'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 import Cookies from  'universal-cookie'
 
 
 export default function LoginForm() {
+    const navigate = useNavigate();
     const cookies = new Cookies();
 
     const initialState = { email: "", password: "" }
@@ -29,13 +31,12 @@ export default function LoginForm() {
                 path:'/',
                 maxAge:24*60*60
             })
+            navigate("/");
             
-            setTimeout(()=>{
-                console.log(cookies.get('token'))
-            },1000);
         }
         catch(error){
             console.log(error);
+            alert("Check your email and password");
         }
     }
 

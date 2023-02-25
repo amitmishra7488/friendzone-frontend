@@ -7,7 +7,8 @@ import { GrUserSettings } from 'react-icons/gr'
 import { Icon, Spinner } from '@chakra-ui/react'
 import Cookies from 'universal-cookie'
 import axios from 'axios';
-import { useDisclosure } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
     Modal,
     ModalOverlay,
@@ -21,12 +22,10 @@ import {
     Input,
 } from '@chakra-ui/react'
 
-
 export default function ProfileDetails() {
     const cookies = new Cookies();
     const [profile, setProfile] = useState({});
 
-    // const { isOpen, onOpen, onClose } = useDisclosure()
 
     const display = async () => {
 
@@ -37,12 +36,14 @@ export default function ProfileDetails() {
                 }
             })
             console.log(cookies.get('token'));
-            console.log(res.data);
+            // console.log(res.data);
             setProfile(res.data);
+            console.log(profile)
         }
         catch (error) {
             console.log(error);
         }
+
     }
 
     const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,7 @@ export default function ProfileDetails() {
             editProfile(bio,dpLink,userName);
         }
         setIsOpen(false);
-        // console.log(profile);
+
     }
 
     const editProfile = async (bio,dpLink,userName) => {
@@ -77,8 +78,6 @@ export default function ProfileDetails() {
                 }
             })
             console.log(cookies.get('token'));
-            console.log(res.data);
-            setProfile(res.data);
             display();
         }
         catch (error) {
@@ -91,7 +90,6 @@ export default function ProfileDetails() {
 
     useEffect(() => {
         display();
-
     }, [])
     return (
         <Box className='profileMainDiv' >
@@ -106,7 +104,10 @@ export default function ProfileDetails() {
                             {/* 1st row */}
                             <HStack spacing='4%' ml='20px' mb="2%">
                                 <Text>{profile.user.userName}</Text>
+                                <Tooltip hasArrow label='Edit' >
                                 <Button size="sm" onClick={() => setIsOpen(true)}>Edit Profile</Button>
+                                </Tooltip>
+                                
                                 <Tooltip hasArrow label='user setting' >
                                     <Box><Icon as={GrUserSettings} boxSize={25} /></Box>
                                 </Tooltip>
@@ -115,9 +116,9 @@ export default function ProfileDetails() {
 
 
                             <HStack spacing='8%' ml='20px' mb="2%">
-                                <Text>26 posts</Text>
-                                <Text>{profile.user.followers>0?profile.user.followers.length :null} followers</Text>
-                                <Text>{profile.user.followers>0? profile.user.following.length:null} following</Text>
+                                <Text>{profile.user.posts.length} posts</Text>
+                                <Text>{profile.user.followers.length} followers</Text>
+                                <Text>{profile.user.following.length} following</Text>
                             </HStack>
 
                             <Box ml='20px'>
@@ -132,7 +133,8 @@ export default function ProfileDetails() {
                 </Box>}
 
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                <ModalOverlay />
+                <ModalOverlay bg='blackAlpha.300'
+      backdropFilter='blur(2px) hue-rotate(30deg)' />
                 <ModalContent>
                     <ModalHeader>Edit Profile</ModalHeader>
                     <ModalCloseButton />

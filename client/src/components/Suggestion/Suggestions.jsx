@@ -5,20 +5,46 @@ import PostLoading from '../PostLoading/PostLoading';
 import {SlUserFollow} from 'react-icons/sl'
 import {BiUser} from 'react-icons/bi'
 import {motion } from "framer-motion";
+import { userProfile } from '../Redux/Actions/userAction'
+import { useDispatch } from 'react-redux'
+import Cookies from 'universal-cookie'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Suggestions() {
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
-    const display = async () => {
+    const [userData,setUserData] = useState({});
+    const cookies = new Cookies();
+    const dispatch = useDispatch();
+
+    const profileDetails = async () => {
+
         try {
-            const res = await fetch('http://localhost:8080/user/suggestions', {
+            const res = await axios.get('http://localhost:8080/user/profile', {
                 headers: {
-                    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGViYjU0ZmYzMTNiNjE5MmMxMDg2NyIsImlhdCI6MTY3NTU0MTM1Nn0.ubEoSn3QG_4lSocPmJIb4smtRNa-RO3WuRinHb6wJ_U'
+                    authorization: cookies.get('token')
                 }
             })
+            // console.log(res.data);
+            setUserData(res.data);
+            dispatch(userProfile(res.data));
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
-            const data = await res.json();
-            console.log(data);
-            setData(data);
+
+    const display = async () => {
+        try {
+            const res = await axios.get('http://localhost:8080/user/suggestions', {
+                headers: {
+                    authorization: cookies.get('token')
+                }
+            })
+            setData(res.data);
+            profileDetails()
         }
         catch (err) {
             console.log(err);
@@ -28,6 +54,28 @@ export default function Suggestions() {
     useEffect(() => {
         display();
     }, [])
+
+    const followed = async (id) => {
+        try{
+            const res= await axios.put('http://localhost:8080/user/followers',
+            {
+                id:id,
+            },
+            {headers: {
+                authorization: cookies.get('token')
+            }}
+            )
+            display();
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const handleFollowed = async (id) => {
+        console.log(id);
+        followed(id);
+    }
 
 
 
@@ -39,11 +87,11 @@ export default function Suggestions() {
                 <Box display="flex" alignItems="center" gap="5%">
                     <Image borderRadius='full'
                         boxSize='70px'
-                        src='https://bit.ly/dan-abramov'
+                        src={Object.keys(userData).length <=0?"Loading...":userData.user.dp}
                         alt='Dan Abramov'
                     />
                     <Box>
-                        <Text>coolamitmishra</Text>
+                        <Text>{Object.keys(userData).length <=0?"Loading...":userData.user.userName}</Text>
                     </Box>
                 </Box>
                 <Box>
@@ -51,6 +99,7 @@ export default function Suggestions() {
                     variant="link"
                     rightIcon={<BiUser/>}
                     colorScheme='facebook'
+                    onClick={()=>{ navigate("/profile")}}
                     _hover={{
                         color: "blue",
                         fontWeight:"bold",
@@ -86,7 +135,9 @@ export default function Suggestions() {
                         color: "blue",
                         fontWeight:"bold",
                         textDecoration:"underline"
-                      }} rightIcon={<SlUserFollow/>}>
+                      }} rightIcon={<SlUserFollow/>}
+                      onClick={()=>{handleFollowed(el.id)}}
+                      >
                                 Follow
                             </Button>
                         </Box>

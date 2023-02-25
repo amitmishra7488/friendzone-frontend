@@ -74,6 +74,9 @@
     .sidebar {
         display:none;
     }
+    #postBox{
+        width:65%;
+    }
 
     
 }

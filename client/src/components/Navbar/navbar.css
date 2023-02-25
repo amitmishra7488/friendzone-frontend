@@ -53,9 +53,7 @@ nav {
 
 @media only screen and (max-width: 600px) {
     
-    nav{
-
-    }
+   
     .navbar-search-input {
         width: 60%;
     }
@@ -66,21 +64,7 @@ nav {
 }
 
 
-@media only screen and (max-width: 450px) {
-    .navbar-logo {
-        
-    }
 
-    
-
-    .navbar-search-input {
-        /* width: 50%; */
-    }
-
-    .navbar-right {
-        
-    }
-}
     
     
     

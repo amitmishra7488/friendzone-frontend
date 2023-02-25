@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './post.css';
 import { FaRegHeart, FaRegComment } from "react-icons/fa"
 import { useState } from 'react';
 import PostLoading from '../PostLoading/PostLoading';
+import { authContext } from '../../context/Context.auth';
 
 
 const InstagramPost = () => {
     const [data,setData] = useState([]);
+    // <authContext.Provider value={{isLoggedIn,setIsLoggedIn,postArray,setPostArray}}>
+    const {setPostArray,postArray}=useContext(authContext);
     const display=async ()=>{
       try{
         const res= await fetch('http://localhost:8080/post')
         const data=await res.json();
         console.log(data);
-        setData(data);
+        setPostArray(data);
       }
       catch(err){
         console.log(err);
@@ -25,8 +28,8 @@ const InstagramPost = () => {
   return(
 
   <>
-  {data.length >0 ?
-    data.map((el,i)=>{
+  {postArray.length >0 ?
+    postArray.map((el,i)=>{
       return(
     <div className="InstagramPost">
       <div className="InstagramPost__header">
