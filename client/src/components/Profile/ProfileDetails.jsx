@@ -108,9 +108,9 @@ export default function ProfileDetails() {
                                 <Button size="sm" onClick={() => setIsOpen(true)}>Edit Profile</Button>
                                 </Tooltip>
                                 
-                                <Tooltip hasArrow label='user setting' >
+                                {/* <Tooltip hasArrow label='user setting' >
                                     <Box><Icon as={GrUserSettings} boxSize={25} /></Box>
-                                </Tooltip>
+                                </Tooltip> */}
                             </HStack>
 
 

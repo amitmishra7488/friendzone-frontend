@@ -54,7 +54,7 @@ export default function ProfileCard() {
                             : data.map((el, i) => {
                                 return (
                                     <Box key={i.toString()}>
-                                        <Image boxSize='280px' src={el.image} alt='Dan Abramov' />
+                                        <Image w="max-content" src={el.image} alt='Dan Abramov' />
                                     </Box>
                                 )
                             })
