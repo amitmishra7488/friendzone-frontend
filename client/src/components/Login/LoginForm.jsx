@@ -5,12 +5,14 @@ import {AiFillEye} from "react-icons/ai"
 import { motion } from 'framer-motion'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
 
 import Cookies from  'universal-cookie'
 import { authContext } from '../../context/Context.auth'
 
 
 export default function LoginForm() {
+    const toast = useToast()
     const navigate = useNavigate();
     const cookies = new Cookies();
 
@@ -39,6 +41,15 @@ export default function LoginForm() {
                 
                 navigate("/");
             },200)
+
+            toast({
+                title: 'Account created.',
+                position:'top',
+                description: "We've created your account for you.",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              })
         }
         catch(error){
             console.log(error);

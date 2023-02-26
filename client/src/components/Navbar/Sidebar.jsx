@@ -91,7 +91,9 @@ const Sidebar = () => {
                         <IoPersonOutline className="sidebar-icon" />
                         <span className="sidebar-nav-text" >Profile</span>
                     </Link >
-                    <Link to="/login" className="sidebar-nav-item">
+                    <Link to="/login" onClick={()=>{
+                        cookies.remove('token', { path: '/' });
+                    }} className="sidebar-nav-item">
                         <FiLogOut className="sidebar-icon" />
                         <span className="sidebar-nav-text" >Logout</span>
                     </Link >
