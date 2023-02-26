@@ -7,7 +7,7 @@ export default function Story() {
     const [data, setData] = useState([]);
     const display = async () => {
         try {
-            const res = await fetch('http://localhost:8080/user/suggestions', {
+            const res = await fetch('https://friendzone-backend-5d8r.vercel.app/user/suggestions', {
                 headers: {
                     'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGViYjU0ZmYzMTNiNjE5MmMxMDg2NyIsImlhdCI6MTY3NTU0MTM1Nn0.ubEoSn3QG_4lSocPmJIb4smtRNa-RO3WuRinHb6wJ_U'
                 }

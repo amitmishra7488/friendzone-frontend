@@ -12,7 +12,7 @@ const InstagramPost = () => {
     const {setPostArray,postArray}=useContext(authContext);
     const display=async ()=>{
       try{
-        const res= await fetch('http://localhost:8080/post')
+        const res= await fetch('https://friendzone-backend-5d8r.vercel.app/post')
         const data=await res.json();
         console.log(data);
         setPostArray(data);

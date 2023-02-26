@@ -12,7 +12,7 @@ export default function ProfileCard() {
 
     const profilePic = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/post/profilePost', {
+            const res = await axios.get('https://friendzone-backend-5d8r.vercel.app/post/profilePost', {
                 headers: {
                     authorization: cookies.get('token')
                 }

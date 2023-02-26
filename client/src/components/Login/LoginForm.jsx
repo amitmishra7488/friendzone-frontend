@@ -22,7 +22,7 @@ export default function LoginForm() {
 
     const display= async(email,password)=>{
         try{
-            const res = await axios.post('http://localhost:8080/user/login',{
+            const res = await axios.post('https://friendzone-backend-5d8r.vercel.app/user/login',{
                 email: email,
                 password: password
             })

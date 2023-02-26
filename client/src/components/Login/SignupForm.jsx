@@ -15,7 +15,7 @@ export default function Signupform() {
 
     const display = async(username,email,password)=>{
         try{
-            const res = await axios.post('http://localhost:8080/user/signup',{
+            const res = await axios.post('https://friendzone-backend-5d8r.vercel.app/user/signup',{
                 name: username,
                 email: email,
                 password: password

@@ -30,7 +30,7 @@ export default function ProfileDetails() {
     const display = async () => {
 
         try {
-            const res = await axios.get('http://localhost:8080/user/profile', {
+            const res = await axios.get('https://friendzone-backend-5d8r.vercel.app/user/profile', {
                 headers: {
                     authorization: cookies.get('token')
                 }
@@ -67,7 +67,7 @@ export default function ProfileDetails() {
     const editProfile = async (bio,dpLink,userName) => {
 
         try {
-            const res = await axios.put('http://localhost:8080/user/bioDP',
+            const res = await axios.put('https://friendzone-backend-5d8r.vercel.app/user/bioDP',
             {
                 bio:bio,
                 dp:dpLink,

@@ -21,7 +21,7 @@ export default function Suggestions() {
     const profileDetails = async () => {
 
         try {
-            const res = await axios.get('http://localhost:8080/user/profile', {
+            const res = await axios.get('https://friendzone-backend-5d8r.vercel.app/user/profile', {
                 headers: {
                     authorization: cookies.get('token')
                 }
@@ -38,7 +38,7 @@ export default function Suggestions() {
 
     const display = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/user/suggestions', {
+            const res = await axios.get('https://friendzone-backend-5d8r.vercel.app/user/suggestions', {
                 headers: {
                     authorization: cookies.get('token')
                 }
@@ -57,7 +57,7 @@ export default function Suggestions() {
 
     const followed = async (id) => {
         try{
-            const res= await axios.put('http://localhost:8080/user/followers',
+            const res= await axios.put('https://friendzone-backend-5d8r.vercel.app/user/followers',
             {
                 id:id,
             },

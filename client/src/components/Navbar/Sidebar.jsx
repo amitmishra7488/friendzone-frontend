@@ -38,7 +38,7 @@ const Sidebar = () => {
     const createPost = async (caption,postLink) => {
 
         try {
-            const res = await axios.post('http://localhost:8080/post/create',
+            const res = await axios.post('https://friendzone-backend-5d8r.vercel.app/post/create',
             {
                 caption:caption,
                 image:postLink,
