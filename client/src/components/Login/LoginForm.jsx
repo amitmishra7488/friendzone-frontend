@@ -43,9 +43,8 @@ export default function LoginForm() {
             },200)
 
             toast({
-                title: 'Account created.',
+                title: 'Logging Successfully',
                 position:'top',
-                description: "We've created your account for you.",
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
