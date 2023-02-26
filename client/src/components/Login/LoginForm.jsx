@@ -52,7 +52,13 @@ export default function LoginForm() {
         }
         catch(error){
             console.log(error);
-            alert("Check your email and password");
+            toast({
+                title: 'Check your email and password',
+                position:'top',
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+              })
         }
     }
 
