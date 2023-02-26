@@ -1,4 +1,4 @@
-import React ,{useState}from 'react'
+import React ,{useContext, useState}from 'react'
 import { Box, FormControl, FormHelperText, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import logo from "../../images/logo.png"
 import {AiFillEye} from "react-icons/ai"
@@ -7,11 +7,14 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 import Cookies from  'universal-cookie'
+import { authContext } from '../../context/Context.auth'
 
 
 export default function LoginForm() {
     const navigate = useNavigate();
     const cookies = new Cookies();
+
+    const {isLoggedIn,setIsLoggedIn}= useContext(authContext);
 
     const initialState = { email: "", password: "" }
     const [input, setInput] = useState(initialState)
@@ -31,8 +34,11 @@ export default function LoginForm() {
                 path:'/',
                 maxAge:24*60*60
             })
-            navigate("/");
-            
+            setIsLoggedIn(true);
+            setTimeout(()=>{
+                
+                navigate("/");
+            },200)
         }
         catch(error){
             console.log(error);
