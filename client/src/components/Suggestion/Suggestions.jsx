@@ -88,7 +88,7 @@ export default function Suggestions() {
                     <Image borderRadius='full'
                         boxSize='70px'
                         src={Object.keys(userData).length <=0?"Loading...":userData.user.dp}
-                        alt='Dan Abramov'
+                        alt='Profile Image'
                     />
                     <Box>
                         <Text>{Object.keys(userData).length <=0?"Loading...":userData.user.userName}</Text>

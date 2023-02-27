@@ -7,8 +7,7 @@ import { GrUserSettings } from 'react-icons/gr'
 import { Icon, Spinner } from '@chakra-ui/react'
 import Cookies from 'universal-cookie'
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useToast } from '@chakra-ui/react'
 import {
     Modal,
     ModalOverlay,
@@ -24,6 +23,7 @@ import {
 
 export default function ProfileDetails() {
     const cookies = new Cookies();
+    const toast = useToast()
     const [profile, setProfile] = useState({});
 
 
@@ -61,6 +61,13 @@ export default function ProfileDetails() {
             editProfile(bio,dpLink,userName);
         }
         setIsOpen(false);
+        toast({
+            title: 'Profile Succesfully Updated',
+            position:'top',
+            status: 'success',
+            duration: 4000,
+            isClosable: true,
+          })
 
     }
 

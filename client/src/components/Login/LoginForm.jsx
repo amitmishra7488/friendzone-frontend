@@ -46,7 +46,7 @@ export default function LoginForm() {
                 title: 'Logging Successfully',
                 position:'top',
                 status: 'success',
-                duration: 9000,
+                duration: 4000,
                 isClosable: true,
               })
         }
@@ -56,7 +56,7 @@ export default function LoginForm() {
                 title: 'Check your email and password',
                 position:'top',
                 status: 'error',
-                duration: 9000,
+                duration: 4000,
                 isClosable: true,
               })
         }
