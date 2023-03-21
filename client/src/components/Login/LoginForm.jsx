@@ -6,12 +6,13 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react'
-
+import { Spinner } from '@chakra-ui/react'
 import Cookies from  'universal-cookie'
 import { authContext } from '../../context/Context.auth'
 
 
 export default function LoginForm() {
+    const [loading, setLoading] = useState(false);
     const toast = useToast()
     const navigate = useNavigate();
     const cookies = new Cookies();
@@ -36,6 +37,7 @@ export default function LoginForm() {
                 path:'/',
                 maxAge:24*60*60
             })
+            setLoading(false);
             setIsLoggedIn(true);
             setTimeout(()=>{
                 
@@ -43,26 +45,28 @@ export default function LoginForm() {
             },200)
 
             toast({
-                title: 'Logging Successfully',
+                title: 'Logged In Successfully',
                 position:'top',
                 status: 'success',
-                duration: 4000,
+                duration: 3000,
                 isClosable: true,
               })
         }
         catch(error){
+            setLoading(false);
             console.log(error);
             toast({
                 title: 'Check your email and password',
                 position:'top',
                 status: 'error',
-                duration: 4000,
+                duration: 3000,
                 isClosable: true,
               })
         }
     }
 
     const handleSubmit = () =>{
+        setLoading(true);
         const { email, password} = input;
         display(email, password);
     }
@@ -103,7 +107,7 @@ export default function LoginForm() {
                 // color: "teal.500",
                 cursor: "pointer"
                 // border: "2px solid teal"
-            }} w="100%" onClick={handleSubmit}>LogIn</Button>
+            }} w="100%" onClick={handleSubmit}>{loading ? <Spinner size="md" /> : "Login"}</Button>
         </FormControl>
     )
 }
