@@ -11,6 +11,8 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    gap: 1%;
+    font-weight: 700;
   }
   
   .InstagramPost__profile-image {

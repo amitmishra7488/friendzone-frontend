@@ -4,6 +4,7 @@ import { FaRegHeart, FaRegComment } from "react-icons/fa"
 import { useState } from 'react';
 import PostLoading from '../PostLoading/PostLoading';
 import { authContext } from '../../context/Context.auth';
+import VerifiedIcon from './VerifiedIcon';
 
 
 const InstagramPost = () => {
@@ -35,6 +36,7 @@ const InstagramPost = () => {
       <div className="InstagramPost__header">
         <img src={el.user.dp} alt="" className="InstagramPost__profile-image" />
         <p className="InstagramPost__username">{el.user.name}</p>
+        <VerifiedIcon/>
       </div>
       <img src={el.image} alt="" className="InstagramPost__post-image" />
       <div className="InstagramPost__actions">
